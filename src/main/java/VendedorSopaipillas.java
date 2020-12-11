@@ -55,7 +55,7 @@ public class VendedorSopaipillas {
     }
 
     public void cocinarSopaipillas(int cantidad){
-        if((cantidad * 30 >= this.aceite) && (cantidad * 60 >= this.harina)){
+        if((this.aceite >= cantidad * 30) && (this.harina >= cantidad * 60)){
             this.aceite -= 30 * cantidad;
             this.harina -= 60 * cantidad;
             this.sopaipillasCocinadas += cantidad;
@@ -121,7 +121,7 @@ public class VendedorSopaipillas {
         System.out.println("¡Gracias, buen día!");
     }
 
-    public void imprimirFaltaDeCondimento(String condimento){
+    private void imprimirFaltaDeCondimento(String condimento){
         System.out.println("No queda más " + condimento + ".");
     }
 
@@ -172,17 +172,17 @@ public class VendedorSopaipillas {
         return vuelto;
     }
 
-    public void calcularSumaVueltoRecibido(){
+    private void calcularSumaVueltoRecibido(){
         for (int i=0; i<this.vueltoRecibido.length; i++){
             this.sumaVueltoRecibido += this.vueltoRecibido[i] * this.valoresMonedasyBilletes[i];
         }
     }
 
-    public void calcularSumaVueltoAEntregar(int cantidadSopaipillas){
+    private void calcularSumaVueltoAEntregar(int cantidadSopaipillas){
         this.sumaVueltoAEntregar = this.sumaVueltoRecibido - (cantidadSopaipillas * this.precioSopaipilla);
     }
 
-    public int[] calcularVueltoAEntregar(){
+    private int[] calcularVueltoAEntregar(){
         for (int i=0; i<this.vueltoDisponible.length; i++){
             if(this.sumaVueltoAEntregar > this.valoresMonedasyBilletes[valoresMonedasyBilletes.length - (i + 1)]){
                 this.vueltoAEntregar[vueltoAEntregar.length - (i + 1)] = this.sumaVueltoAEntregar / this.valoresMonedasyBilletes[valoresMonedasyBilletes.length - (i + 1)];
